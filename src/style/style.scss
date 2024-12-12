@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+html,
+body{
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    height: 100%;
+    margin: 0;
+}
+
+.container{
+    max-width: 1500px;
+    width: 100%;
+    height: 100%;
+    padding: 20px 30px;
+    margin: 0 auto;
+}
+
+#dark{
+    input,textarea, button{
+        background-color: #1ABC9C;
+        color: #E0E0E0;
+    }
+    input::placeholder, textarea::placeholder{
+        color: #E0E0E0;
+    }
+    animation: swipeThemeDark 1s forwards;
+}
+
+@keyframes swipeThemeDark {
+    100%{
+        background-color: #121212;
+        color: #E0E0E0;
+        border-color: #333333;
+    }
+}
+
+#light{
+    input,textarea, button{
+        background-color: #D9F9D9;
+        color: #333333;
+    }
+    input::placeholder, textarea::placeholder{
+        color: #333333;
+    }
+    animation: swipeThemeLight 1s forwards;
+}
+
+@keyframes swipeThemeLight {
+    100%{
+        background-color: #FFFFFF;
+        color: #333333;
+        border-color: black;
+    }
+}
+
+.App{
+    height: 100%;
+}

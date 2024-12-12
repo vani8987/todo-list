@@ -1,0 +1,80 @@
+.Shape{
+    display: flex;
+    flex-direction: column;
+    padding: 30px 15px;
+    border-radius: 10px;
+    border: 1px solid ;
+    width: 10%;
+    animation: AnimShapeOpen 0.5s forwards;
+
+    .inputShape{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        input{
+            border-radius: 50px;
+            padding: 10px;
+        }
+        
+        textarea{
+            width: 100%;
+            border-radius: 20px;
+            padding: 10px ;
+        }
+    }
+    
+    .radioBtnsShape{
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+
+        input{
+            opacity: 0;
+            position: absolute;
+        }
+
+        label{
+            display: inline-flex;
+            width: 130px;
+            height: 40px;
+            border: 1px solid;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        input:checked + .iconradioBtn{
+            color: #1ABC9C;
+        }
+
+        .iconradioBtn{
+            position: absolute;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: auto;
+            margin-bottom: auto;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            font-size: 30px;
+        }
+    }
+
+    button{
+        width: 100%;
+        margin-top: 20px;
+        padding: 5px 0px;
+        border-radius: 10px;
+    }
+    
+
+    @keyframes AnimShapeOpen {
+        100%{
+            width: 100%;
+        }
+    }
+}
