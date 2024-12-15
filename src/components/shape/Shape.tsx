@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import "./shape.scss"
 import { BiSolidTimer } from "react-icons/bi";
 import { TbClockPlus } from "react-icons/tb";
@@ -6,13 +5,13 @@ import { FaBoxOpen } from "react-icons/fa";
 
 
 interface ShapeType {
-    HandlerTypeTask: (event:React.ChangeEvent<HTMLInputElement>) => void,
+    HandlerTypeTaskState : (event:React.ChangeEvent<HTMLInputElement>) => void,
     HandlerTitle: (event:React.ChangeEvent<HTMLInputElement>) => void
     HandlerDescription: (event:React.ChangeEvent<HTMLTextAreaElement>) => void
     Submit: any
 }
 
-const Shape:React.FC<ShapeType> = ({HandlerTypeTask, HandlerTitle, HandlerDescription, Submit}) => { 
+const Shape:React.FC<ShapeType> = ({HandlerTypeTaskState , HandlerTitle, HandlerDescription, Submit}) => { 
     return ( 
         <form className="Shape" onSubmit={Submit}>
             <div className="inputShape">
@@ -21,15 +20,15 @@ const Shape:React.FC<ShapeType> = ({HandlerTypeTask, HandlerTitle, HandlerDescri
             </div>
             <div className="radioBtnsShape">
                 <label>
-                    <input type="radio" name="myRadio" value="urgent" onChange={HandlerTypeTask} defaultChecked/>
+                    <input type="radio" name="myRadio" value="urgent" onChange={HandlerTypeTaskState} defaultChecked/>
                     <BiSolidTimer className="iconradioBtn" />
                 </label>
                 <label>
-                    <input type="radio" name="myRadio" value="not_urgent"  onChange={HandlerTypeTask}/>
+                    <input type="radio" name="myRadio" value="not_urgent"  onChange={HandlerTypeTaskState}/>
                     <TbClockPlus className="iconradioBtn"/>
                 </label>
                 <label>
-                    <input type="radio" name="myRadio" value="archive"  onChange={HandlerTypeTask}/>
+                    <input type="radio" name="myRadio" value="archive"  onChange={HandlerTypeTaskState}/>
                     <FaBoxOpen className="iconradioBtn"/>
                 </label>
             </div>

@@ -9,11 +9,19 @@ body{
     margin: 0;
 }
 
-.container{
+.containerShape{
     max-width: 1500px;
     width: 100%;
     height: 100%;
     padding: 20px 30px;
+    margin: 0 auto;
+}
+
+.containerTodo{
+    max-width: 1700px;
+    width: 100%;
+    height: 100%;
+    padding: 0px 30px;
     margin: 0 auto;
 }
 
@@ -24,6 +32,10 @@ body{
     }
     input::placeholder, textarea::placeholder{
         color: #E0E0E0;
+    }
+
+    button:hover{
+        background-color:#2bd6b4;
     }
     animation: swipeThemeDark 1s forwards;
 }

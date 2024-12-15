@@ -1,0 +1,77 @@
+.Todo{
+    padding-top: 10px;
+    gap: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 0%;
+    animation: AnimOpenTodo 0.5s forwards;
+
+    h1{
+        width: 150px;
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+    .Header_search{
+        display: flex;
+        gap: 10px;
+        width: 100%;
+        margin: 0 auto;
+
+        input{
+            border-radius: 30px;
+            padding: 3px 10px;
+            width: 100%;
+            position: relative;
+        }
+
+        .search{
+            font-size: 30px;
+        }
+    }
+
+    .radioBtnsShape{
+        display: flex;
+        justify-content: space-between;
+        gap: 5px;
+
+
+        input{
+            opacity: 0;
+            position: absolute;
+        }
+
+        label{
+            display: inline-flex;
+            width: 60px;
+            height: 25px;
+            border: 1px solid;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        input:checked + .iconradioBtn{
+            color: #1ABC9C;
+        }
+
+        .iconradioBtn{
+            position: absolute;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: auto;
+            margin-bottom: auto;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            font-size: 20px;
+        }
+    }
+
+    @keyframes AnimOpenTodo {
+        100%{
+           width: 100%; 
+        }
+    }
+}

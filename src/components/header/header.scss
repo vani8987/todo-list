@@ -9,36 +9,6 @@
         text-transform: uppercase;
         font-size: 18px;
     }
-
-    .Header_search{
-        display: flex;
-        gap: 10px;
-        width: 75%;
-        margin: 0 auto;
-
-        input{
-            border-radius: 30px;
-            padding: 3px 10px;
-            width: 0%;
-            position: relative;
-            animation: openSearhe 1.5s forwards;
-            animation-delay: 0.3s;
-        }
-
-        .search{
-            font-size: 30px;
-        }
-
-        @keyframes openSearhe {
-            1%{
-                width: 0%;
-            }
-
-            100%{
-                width: 100%;
-            }
-        }
-    }
     
     .switch{
         display: inline-block;
@@ -119,7 +89,7 @@
         }
 
         #opasityIcon{
-            animation: opasityIconAnim 1s forwards;
+            animation: opasityIconAnim 0.5s forwards;
         }
         
         @keyframes opasityIconAnim {
