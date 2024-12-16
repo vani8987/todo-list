@@ -4,14 +4,15 @@ import { TbClockPlus } from "react-icons/tb";
 import { FaBoxOpen } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import React, { useEffect, useState } from "react";
-import Task from "./task/task";
+
 
 interface TypeTodo {
     HandlerNameTypeTask: (event:React.ChangeEvent<HTMLInputElement>) => void
     nameTypeTask: string
+    TaskStateReturn: any
 }
 
-const Todo:React.FC<TypeTodo> = ({HandlerNameTypeTask, nameTypeTask}) => {
+const Todo:React.FC<TypeTodo> = ({HandlerNameTypeTask, nameTypeTask, TaskStateReturn}) => {
     const [nameTask, setNameTask] = useState("Срочные")
 
     useEffect(() => {
@@ -47,7 +48,9 @@ const Todo:React.FC<TypeTodo> = ({HandlerNameTypeTask, nameTypeTask}) => {
                 </label>
             </div>
         </div>
-        <Task />
+        <div className="Tasks">
+            {TaskStateReturn}
+        </div>
         </>
     );
 }

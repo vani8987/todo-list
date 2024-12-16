@@ -3,12 +3,12 @@ import Snowfall from 'react-snowfall'
 import Header from "./components/header/header";
 import Shape from "./components/shape/Shape";
 import Todo from "./components/todo/todo";
+import Task from "./components/todo/task/task";
 
 interface TypeShapeTask {
     title: string
     description: string
 }
-
 
 function App() {
     const [Theme, setTheme] = useState<string>("dark")
@@ -18,10 +18,8 @@ function App() {
     const [urgent, setUrgent] = useState<TypeShapeTask[]>([]) 
     const [not_urgent, setNot_urgent] = useState<TypeShapeTask[]>([]) 
     const [archive, setArchive] = useState<TypeShapeTask[]>([])
-    const [data, setData] = useState<TypeShapeTask>({
-        title: "",
-        description: ""
-    })
+    const [TaskStateReturn, setTaskStateReturn] = useState<any[]>([])
+    const [data, setData] = useState<TypeShapeTask>({title: "", description: ""})
 
     const swipeTheme = ():void => {
         setTheme(Theme === "dark" ? "light" : "dark")
@@ -32,7 +30,24 @@ function App() {
         setTimeout(() => {
             setCountSnow(200)
         }, 6000)
-    }, [Theme, nameTypeTask])
+
+        if (nameTypeTask === "urgent") {
+            const TaskMap = urgent.map((item, index) => {
+                return <Task item={item} key={index} id={index}/>
+            })
+            setTaskStateReturn(TaskMap)
+        } else if (nameTypeTask === "not_urgent") {
+            const TaskMap = not_urgent.map((item, index) => {
+                return <Task item={item} key={index} id={index}/>
+            })
+            setTaskStateReturn(TaskMap)
+        } else {
+            const TaskMap = archive.map((item, index) => {
+                return <Task item={item} key={index} id={index}/>
+            })
+            setTaskStateReturn(TaskMap)
+        }
+    }, [Theme, urgent, not_urgent, archive, nameTypeTask])
 
     const HandlerTypeTaskState = (event:React.ChangeEvent<HTMLInputElement>):void => {
         setStateType(event.target.value)
@@ -57,10 +72,7 @@ function App() {
         } else {
             setArchive((prevTasks) => [...prevTasks, data]);
         }
-        setData({
-            title: "",
-            description: ""
-        })
+        setData({title: "", description: ""})
         event.target.reset();
     }
 
@@ -72,7 +84,7 @@ function App() {
                 <Shape HandlerTypeTaskState ={HandlerTypeTaskState } HandlerTitle={HandlerTitle} HandlerDescription={HandlerDescription} Submit={Submit}/>
             </div>
             <div className="containerTodo">
-                <Todo HandlerNameTypeTask={HandlerNameTypeTask} nameTypeTask={nameTypeTask}/>
+                <Todo HandlerNameTypeTask={HandlerNameTypeTask} nameTypeTask={nameTypeTask} TaskStateReturn={TaskStateReturn}/>
             </div>
         </div>
     );
