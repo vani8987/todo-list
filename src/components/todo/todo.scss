@@ -1,6 +1,6 @@
 .Todo{
     padding-top: 10px;
-    gap: 25px;
+    gap: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -97,4 +97,9 @@
     .Tasks{
         grid-template-columns: 1fr;
     }
+    
+    .Todo>.radioBtnsShape>label{
+        width: 30px;
+    }
+
 }
