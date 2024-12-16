@@ -11,13 +11,13 @@ interface TypeShapeTask {
 }
 
 function App() {
-    const [Theme, setTheme] = useState<string>("dark")
+    const [Theme, setTheme] = useState<string>(localStorage.getItem("Theme")!)
     const [countSnow, setCountSnow] = useState<number>(900)
     const [stateType, setStateType] = useState<string>("urgent") 
     const [nameTypeTask, setNameTypeTask] = useState<string>("urgent")
-    const [urgent, setUrgent] = useState<TypeShapeTask[]>([]) 
-    const [not_urgent, setNot_urgent] = useState<TypeShapeTask[]>([]) 
-    const [archive, setArchive] = useState<TypeShapeTask[]>([])
+    const [urgent, setUrgent] = useState<TypeShapeTask[]>(JSON.parse(localStorage.getItem('urgent')!) || []) 
+    const [not_urgent, setNot_urgent] = useState<TypeShapeTask[]>(JSON.parse(localStorage.getItem('not_urgent')!) || []) 
+    const [archive, setArchive] = useState<TypeShapeTask[]>(JSON.parse(localStorage.getItem('archive')!) || [])
     const [TaskStateReturn, setTaskStateReturn] = useState<any[]>([])
     const [data, setData] = useState<TypeShapeTask>({title: "", description: ""})
 
@@ -27,6 +27,8 @@ function App() {
 
     useEffect(() => {
         Theme === "dark" ? document.body.id = "dark" : document.body.id = "light"
+        localStorage.setItem("Theme", Theme)
+        
         setTimeout(() => {
             setCountSnow(200)
         }, 6000)
@@ -36,17 +38,21 @@ function App() {
                 return <Task item={item} key={index} id={index}/>
             })
             setTaskStateReturn(TaskMap)
+            localStorage.setItem("urgent", JSON.stringify(urgent))
         } else if (nameTypeTask === "not_urgent") {
             const TaskMap = not_urgent.map((item, index) => {
                 return <Task item={item} key={index} id={index}/>
             })
             setTaskStateReturn(TaskMap)
+            localStorage.setItem("not_urgent", JSON.stringify(not_urgent))
         } else {
             const TaskMap = archive.map((item, index) => {
                 return <Task item={item} key={index} id={index}/>
             })
             setTaskStateReturn(TaskMap)
+            localStorage.setItem("archive", JSON.stringify(archive))
         }
+
     }, [Theme, urgent, not_urgent, archive, nameTypeTask])
 
     const HandlerTypeTaskState = (event:React.ChangeEvent<HTMLInputElement>):void => {
@@ -84,7 +90,11 @@ function App() {
                 <Shape HandlerTypeTaskState ={HandlerTypeTaskState } HandlerTitle={HandlerTitle} HandlerDescription={HandlerDescription} Submit={Submit}/>
             </div>
             <div className="containerTodo">
-                <Todo HandlerNameTypeTask={HandlerNameTypeTask} nameTypeTask={nameTypeTask} TaskStateReturn={TaskStateReturn}/>
+                <Todo 
+                HandlerNameTypeTask={HandlerNameTypeTask} 
+                nameTypeTask={nameTypeTask} 
+                TaskStateReturn={TaskStateReturn}
+                />
             </div>
         </div>
     );
