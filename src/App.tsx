@@ -14,6 +14,7 @@ function App() {
     const [Theme, setTheme] = useState<string>(localStorage.getItem("Theme")!)
     const [countSnow, setCountSnow] = useState<number>(900)
     const [SnowfallIncluded, setSnowfallIncluded] = useState<boolean>(JSON.parse(localStorage.getItem('SnowfallIncluded')!))
+    const [garland, setGarland] = useState<string>("gir_1")
     const [stateType, setStateType] = useState<string>("urgent") 
     const [nameTypeTask, setNameTypeTask] = useState<string>("urgent")
     const [urgent, setUrgent] = useState<TypeShapeTask[]>(JSON.parse(localStorage.getItem('urgent')!) || []) 
@@ -58,8 +59,21 @@ function App() {
         localStorage.setItem("urgent", JSON.stringify(urgent))
         localStorage.setItem("not_urgent", JSON.stringify(not_urgent))
         localStorage.setItem("archive", JSON.stringify(archive))
+
+        const intervalId = setTimeout(() => {
+            setGarland((prevGarland) => {
+              if (prevGarland === "gir_1") {
+                return "gir_2";
+              } else if (prevGarland === "gir_2") {
+                return "gar_3";
+              } else {
+                return "gir_1";
+              }
+            });
+        }, 350);
+        return () => clearInterval(intervalId);
         
-    }, [Theme, urgent, not_urgent, archive, nameTypeTask, SnowfallIncluded])
+    }, [Theme, urgent, not_urgent, archive, nameTypeTask, SnowfallIncluded, garland])
 
     const HandlerTypeTaskState = (event:React.ChangeEvent<HTMLInputElement>):void => {
         setStateType(event.target.value)
@@ -90,6 +104,7 @@ function App() {
 
     return (
         <div className="App">
+            <div className={garland} id="gir"></div>
             {SnowfallIncluded && <Snowfall snowflakeCount={countSnow}/>}
             <Header swipeTheme={swipeTheme} Theme={Theme} HandlerSnowfallIncluded={HandlerSnowfallIncluded}/>
             <div className="containerShape">
