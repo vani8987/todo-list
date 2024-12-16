@@ -13,6 +13,7 @@ interface TypeShapeTask {
 function App() {
     const [Theme, setTheme] = useState<string>(localStorage.getItem("Theme")!)
     const [countSnow, setCountSnow] = useState<number>(900)
+    const [SnowfallIncluded, setSnowfallIncluded] = useState<boolean>(JSON.parse(localStorage.getItem('SnowfallIncluded')!))
     const [stateType, setStateType] = useState<string>("urgent") 
     const [nameTypeTask, setNameTypeTask] = useState<string>("urgent")
     const [urgent, setUrgent] = useState<TypeShapeTask[]>(JSON.parse(localStorage.getItem('urgent')!) || []) 
@@ -25,6 +26,10 @@ function App() {
         setTheme(Theme === "dark" ? "light" : "dark")
     }
 
+    const HandlerSnowfallIncluded = ():void => {
+        setSnowfallIncluded(!SnowfallIncluded)
+    }
+
     useEffect(() => {
         Theme === "dark" ? document.body.id = "dark" : document.body.id = "light"
         localStorage.setItem("Theme", Theme)
@@ -32,28 +37,29 @@ function App() {
         setTimeout(() => {
             setCountSnow(200)
         }, 6000)
+        localStorage.setItem("SnowfallIncluded", JSON.stringify(SnowfallIncluded))
 
         if (nameTypeTask === "urgent") {
             const TaskMap = urgent.map((item, index) => {
                 return <Task item={item} key={index} id={index}/>
             })
             setTaskStateReturn(TaskMap)
-            localStorage.setItem("urgent", JSON.stringify(urgent))
         } else if (nameTypeTask === "not_urgent") {
             const TaskMap = not_urgent.map((item, index) => {
                 return <Task item={item} key={index} id={index}/>
             })
             setTaskStateReturn(TaskMap)
-            localStorage.setItem("not_urgent", JSON.stringify(not_urgent))
         } else {
             const TaskMap = archive.map((item, index) => {
                 return <Task item={item} key={index} id={index}/>
             })
             setTaskStateReturn(TaskMap)
-            localStorage.setItem("archive", JSON.stringify(archive))
         }
-
-    }, [Theme, urgent, not_urgent, archive, nameTypeTask])
+        localStorage.setItem("urgent", JSON.stringify(urgent))
+        localStorage.setItem("not_urgent", JSON.stringify(not_urgent))
+        localStorage.setItem("archive", JSON.stringify(archive))
+        
+    }, [Theme, urgent, not_urgent, archive, nameTypeTask, SnowfallIncluded])
 
     const HandlerTypeTaskState = (event:React.ChangeEvent<HTMLInputElement>):void => {
         setStateType(event.target.value)
@@ -84,8 +90,8 @@ function App() {
 
     return (
         <div className="App">
-            <Snowfall snowflakeCount={countSnow}/>     
-            <Header swipeTheme={swipeTheme} Theme={Theme}/>
+            {SnowfallIncluded && <Snowfall snowflakeCount={countSnow}/>}
+            <Header swipeTheme={swipeTheme} Theme={Theme} HandlerSnowfallIncluded={HandlerSnowfallIncluded}/>
             <div className="containerShape">
                 <Shape HandlerTypeTaskState ={HandlerTypeTaskState } HandlerTitle={HandlerTitle} HandlerDescription={HandlerDescription} Submit={Submit}/>
             </div>

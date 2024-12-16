@@ -10,95 +10,118 @@
         font-size: 18px;
     }
     
-    .switch{
-        display: inline-block;
-        position: relative;
-        width: 60px;
-        height: 34px;
+    .Header_Btn{
+        display: flex;
+        align-items: center;
+        gap: 10px;
 
-        input{
-            opacity: 0;
-            position: absolute;
-
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ffffff;
-            border-radius: 20px;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        .slider::after{
-            content: "";
-            position: absolute;
-            width: 26px;
-            height: 26px;
-            border-radius: 30px;
-            left: 4px;
-            bottom: 4px;
-            background-color: rgb(0, 0, 0);
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        input:checked + .slider{
-            background-color: rgb(0, 0, 0);
-        }
-
-        input:checked + .slider::after{
-            background-color: white;
-        }        
-
-        input:checked + .slider::after{
-            -webkit-transform: translateX(26px);
-            -ms-transform: translateX(26px);
-            transform: translateX(26px);
-        }
-
-        @media (max-width: 600px) {
-            input:checked + .slider::after{
-                -webkit-transform: translateX(19px);
-                -ms-transform: translateX(19px);
-                transform: translateX(19px);
+        .switch{
+            display: inline-block;
+            position: relative;
+            width: 60px;
+            height: 34px;
+    
+            input{
+                opacity: 0;
+                position: absolute;
+    
             }
-        }
-
-        .sunIcon{
-            position: absolute;
-            right: 5.5px;
-            bottom: 6px;
-            color: rgb(0, 0, 0);
-            font-size: 22px;
-            opacity: 1;
-        }
-
-        .moonIcon{
-            position: absolute;
-            left: 5px;
-            bottom: 6px;
-            color: white;
-            font-size: 22px;
-            opacity: 1;
-        }
-
-        #opasityIcon{
-            animation: opasityIconAnim 0.5s forwards;
-        }
-        
-        @keyframes opasityIconAnim {
-            1%{
+    
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ffffff;
+                border-radius: 20px;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+    
+            .slider::after{
+                content: "";
+                position: absolute;
+                width: 26px;
+                height: 26px;
+                border-radius: 30px;
+                left: 4px;
+                bottom: 4px;
+                background-color: rgb(0, 0, 0);
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+    
+            input:checked + .slider{
+                background-color: rgb(0, 0, 0);
+            }
+    
+            input:checked + .slider::after{
+                background-color: white;
+            }        
+    
+            input:checked + .slider::after{
+                -webkit-transform: translateX(26px);
+                -ms-transform: translateX(26px);
+                transform: translateX(26px);
+            }
+    
+            @media (max-width: 600px) {
+                input:checked + .slider::after{
+                    -webkit-transform: translateX(24px);
+                    -ms-transform: translateX(24px);
+                    transform: translateX(24px);
+                }
+            }
+    
+            .sunIcon{
+                position: absolute;
+                right: 5.5px;
+                bottom: 6px;
+                color: rgb(0, 0, 0);
+                font-size: 22px;
                 opacity: 1;
             }
+    
+            .moonIcon{
+                position: absolute;
+                left: 5px;
+                bottom: 6px;
+                color: white;
+                font-size: 22px;
+                opacity: 1;
+            }
+    
+            #opasityIcon{
+                animation: opasityIconAnim 0.5s forwards;
+            }
             
-            100%{
-                opacity: 0;
+            @keyframes opasityIconAnim {
+                1%{
+                    opacity: 1;
+                }
+                
+                100%{
+                    opacity: 0;
+                }
+            }
+        }
+
+
+        button{
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            position: relative;
+            background-color: white;
+
+            .SnowIcon{
+                font-size: 27px;
+                color: black;
+                position: absolute;
+                left: 4px;
+                top: 4px;
             }
         }
     }

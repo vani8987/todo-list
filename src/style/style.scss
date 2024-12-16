@@ -37,6 +37,11 @@ body{
     button:hover{
         background-color:#2bd6b4;
     }
+
+    .Header_Btn>button{
+        background-color: white;
+    }
+    
     animation: swipeThemeDark 1s forwards;
 }
 
@@ -55,6 +60,14 @@ body{
     }
     input::placeholder, textarea::placeholder{
         color: #333333;
+    }
+
+    .Header_Btn>button{
+        background-color: black;
+
+        .SnowIcon{
+            color: white;
+        }
     }
     animation: swipeThemeLight 1s forwards;
 }
