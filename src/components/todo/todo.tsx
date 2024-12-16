@@ -28,7 +28,7 @@ const Todo:React.FC<TypeTodo> = ({HandlerNameTypeTask, nameTypeTask, TaskStateRe
     return (
         <>
         <div className="Todo">
-            <h1>{nameTask}</h1>  
+            <h1>{nameTask}</h1>
             <div className="Header_search">
                 <input type="text" placeholder="Поиск"/>
                 <CiSearch className="search" />
