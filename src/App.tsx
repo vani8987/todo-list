@@ -23,14 +23,6 @@ function App() {
     const [TaskStateReturn, setTaskStateReturn] = useState<any[]>([])
     const [data, setData] = useState<TypeShapeTask>({title: "", description: ""})
 
-    const swipeTheme = ():void => {
-        setTheme(Theme === "dark" ? "light" : "dark")
-    }
-
-    const HandlerSnowfallIncluded = ():void => {
-        setSnowfallIncluded(!SnowfallIncluded)
-    }
-
     useEffect(() => {
         Theme === "dark" ? document.body.id = "dark" : document.body.id = "light"
         localStorage.setItem("Theme", Theme)
@@ -42,20 +34,37 @@ function App() {
 
         if (nameTypeTask === "urgent") {
             const TaskMap = urgent.map((item, index) => {
-                return <Task item={item} key={index} id={index}/>
+                return <Task 
+                item={item} 
+                key={index} 
+                id={index} 
+                deletTask={deletTask}
+                />
             })
             setTaskStateReturn(TaskMap)
+        
         } else if (nameTypeTask === "not_urgent") {
             const TaskMap = not_urgent.map((item, index) => {
-                return <Task item={item} key={index} id={index}/>
+                return <Task 
+                item={item} 
+                key={index} 
+                id={index} 
+                deletTask={deletTask}
+                />
             })
             setTaskStateReturn(TaskMap)
         } else {
             const TaskMap = archive.map((item, index) => {
-                return <Task item={item} key={index} id={index}/>
+                return <Task 
+                item={item} 
+                key={index} 
+                id={index} 
+                deletTask={deletTask}
+                />
             })
             setTaskStateReturn(TaskMap)
         }
+
         localStorage.setItem("urgent", JSON.stringify(urgent))
         localStorage.setItem("not_urgent", JSON.stringify(not_urgent))
         localStorage.setItem("archive", JSON.stringify(archive))
@@ -75,6 +84,15 @@ function App() {
         
     }, [Theme, urgent, not_urgent, archive, nameTypeTask, SnowfallIncluded, garland])
 
+    
+    const swipeTheme = ():void => {
+        setTheme(Theme === "dark" ? "light" : "dark")
+    }
+
+    const HandlerSnowfallIncluded = ():void => {
+        setSnowfallIncluded(!SnowfallIncluded)
+    }
+
     const HandlerTypeTaskState = (event:React.ChangeEvent<HTMLInputElement>):void => {
         setStateType(event.target.value)
     }
@@ -86,9 +104,11 @@ function App() {
     const HandlerTitle = (event:React.ChangeEvent<HTMLInputElement>):void => {
         data.title = event.target.value
     }
+
     const HandlerDescription = (event:React.ChangeEvent<HTMLTextAreaElement>):void => {
         data.description = event.target.value
     }
+
     const Submit = (event:any): void => {
         event.preventDefault()
         if (stateType === "urgent") {
@@ -99,9 +119,20 @@ function App() {
             setArchive((prevTasks) => [...prevTasks, data]);
         }
         setData({title: "", description: ""})
+        setStateType("urgent")
         event.target.reset();
     }
 
+    const deletTask = (id: number):void => {
+        if (nameTypeTask === "urgent") {
+            setUrgent(prevData => prevData.filter((none, index) => index !== id))
+        } else if (nameTypeTask === "not_urgent") {
+            setNot_urgent(prevData => prevData.filter((none, index) => index !== id))
+        } else {
+            setArchive(prevData => prevData.filter((none, index) => index !== id))
+        }
+    }
+    
     return (
         <div className="App">
             <div className={garland} id="gir"></div>

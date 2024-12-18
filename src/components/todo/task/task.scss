@@ -5,17 +5,27 @@
     border-radius: 10px;
     padding: 10px 20px;
 
-    .row_Title{
+    .Task_header{
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
+        align-items: center;
 
-        h1{
-            font-size: 20px;
+        .Header_title>h1{
+            font-size: 22px;
+        }
+
+        .Header_btn{
+            display: flex;
+            gap: 10px;
+
+            button>.iconTask{
+                font-size: 20px;
+            }
         }
     }
 
     .row_description{
-        padding-top: 10px;
+        padding-top: 15px;
         padding-bottom: 10px;
 
         p{

@@ -1,7 +1,7 @@
 import "./header.scss"
 import { IoMdSunny } from "react-icons/io";
-import { FaMoon } from "react-icons/fa";
-import { FaRegSnowflake } from "react-icons/fa";
+import { FaMoon, FaRegSnowflake } from "react-icons/fa";
+
 
 interface HeaderType {
     swipeTheme: () => void

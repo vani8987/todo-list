@@ -41,6 +41,10 @@ body{
     .Header_Btn>button{
         background-color: white;
     }
+
+    .Task_header>.Header_btn>button{
+        background-color: transparent;
+    }
     
     animation: swipeThemeDark 1s forwards;
 }
@@ -69,6 +73,11 @@ body{
             color: white;
         }
     }
+
+    .Task_header>.Header_btn>button{
+        background-color: transparent;
+    }
+
     animation: swipeThemeLight 1s forwards;
 }
 
