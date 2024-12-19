@@ -4,15 +4,18 @@ import { TbClockPlus } from "react-icons/tb";
 import { FaBoxOpen } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import React, { useEffect, useState } from "react";
+import EmptyTask from "../emptyTask/emptyTask";
 
 
 interface TypeTodo {
     HandlerNameTypeTask: (event:React.ChangeEvent<HTMLInputElement>) => void
+    HandlerValueSearch: (event:React.ChangeEvent<HTMLInputElement>) => void
     nameTypeTask: string
+    emptyBoolea: boolean
     TaskStateReturn: any
 }
 
-const Todo:React.FC<TypeTodo> = ({HandlerNameTypeTask, nameTypeTask, TaskStateReturn}) => {
+const Todo:React.FC<TypeTodo> = ({HandlerNameTypeTask, nameTypeTask, TaskStateReturn, emptyBoolea, HandlerValueSearch}) => {
     const [nameTask, setNameTask] = useState("Срочные")
 
     useEffect(() => {
@@ -30,7 +33,7 @@ const Todo:React.FC<TypeTodo> = ({HandlerNameTypeTask, nameTypeTask, TaskStateRe
         <div className="Todo">
             <h1>{nameTask}</h1>
             <div className="Header_search">
-                <input type="text" placeholder="Поиск"/>
+                <input type="text" placeholder="Поиск" onChange={HandlerValueSearch}/>
                 <CiSearch className="search" />
             </div>
             <div className="radioBtnsShape">
@@ -51,6 +54,9 @@ const Todo:React.FC<TypeTodo> = ({HandlerNameTypeTask, nameTypeTask, TaskStateRe
         <div className="Tasks">
             {TaskStateReturn}
         </div>
+        {emptyBoolea && <div className="EmtptyTask">
+            <EmptyTask />
+        </div>}
         </>
     );
 }
