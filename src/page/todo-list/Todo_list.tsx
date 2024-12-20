@@ -25,24 +25,11 @@ function TodoList() {
     
     useEffect(() => {
         if (nameTypeTask === "urgent") {
-            if (urgent.length !== 0) {
-                setEmptyBoolea(false)
-            } else {
-                setEmptyBoolea(true)
-            }
-        
+            setEmptyBoolea(urgent.length === 0);
         } else if (nameTypeTask === "not_urgent") {
-            if (not_urgent.length !== 0) {
-                setEmptyBoolea(false)
-            } else {
-                setEmptyBoolea(true)
-            }
+            setEmptyBoolea(not_urgent.length === 0);
         } else {
-            if (archive.length !== 0) {
-                setEmptyBoolea(false)
-            } else {
-                setEmptyBoolea(true)
-            }
+            setEmptyBoolea(archive.length === 0);
         }
 
         localStorage.setItem("urgent", JSON.stringify(urgent))
