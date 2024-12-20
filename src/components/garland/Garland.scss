@@ -1,0 +1,18 @@
+#gir {
+    position: fixed;
+    top: -15px;
+    left: 0;
+    background-image:url('https://atuin.ru/upload/1701402637_gir.png');
+    height: 62px;
+    width: 100%;
+    z-index: -111;
+}  
+.gir_1 {
+    background-position: 0 0
+}  
+.gir_2 {
+    background-position: 0 -62px
+}  
+.gir_3 {
+    background-position: 0 -124px
+}
