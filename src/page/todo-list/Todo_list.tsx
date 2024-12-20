@@ -137,6 +137,7 @@ function TodoList() {
                 HandlerValueSearch={HandlerValueSearch}
                 />
             </div>
+            <Footer />
         </div>
     );
 }
