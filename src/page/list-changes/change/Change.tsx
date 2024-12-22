@@ -1,14 +1,24 @@
 import "./Change.scss"
+import { ListChangesType } from "../ListChanges"
 
-const Change = () => {
+interface ChangeType {
+    item: ListChangesType
+}
+
+
+const Change:React.FC<ChangeType>  = ({item}) => {
+    const text = item.change.split(".")
+   
+    const points = text.map((item) => {
+        return <li><p>{item.trim()}</p></li>
+    })
     return ( 
-        <div className="Change">
+        <div className="Change" key={item.id}>
             <div className="Change__version">
-                <h1>версия: номер версии</h1>
+                <h1>версия: {item.version}</h1>
                 <div className="Change__list">
                     <ul>
-                        <li><p>пункт</p></li>
-                        <li><p>пункт</p></li>
+                        {points}
                     </ul>
                 </div>
             </div>

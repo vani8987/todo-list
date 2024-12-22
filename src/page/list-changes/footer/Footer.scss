@@ -12,14 +12,13 @@
         .Footer__Version>h2{
             font-size: 10px;
             color: gray;
-            text-align: start;
+            text-align: end;
         }
 
         .Footer__Git>a{
             display: flex;
             gap: 5px;
             align-items: center;
-            text-align: end;
 
             p{
                 font-size: 10px;
@@ -29,6 +28,7 @@
             .Footer__Git-icon{
                 color: gray;
             }
+            text-align: end;
         }
 
         .Footer__listChanges{
@@ -55,8 +55,8 @@
                 background-color: gray;
                 position: absolute;
                 bottom: 3px;
-                right: 0px;
-                transform: rotate(20deg);
+                left: 0px;
+                transform: rotate(-20deg);
             }
 
             .Footer__listChanges-btn::before{
@@ -66,8 +66,8 @@
                 background-color: gray;
                 position: absolute;
                 top: 3px;
-                right: 0px;
-                transform: rotate(-20deg);
+                left: 0px;
+                transform: rotate(20deg);
             }
         }
         
