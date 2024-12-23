@@ -16,12 +16,6 @@ const Footer = () => {
                         <FaGithub className="Footer__Git-icon"/>
                     </a>
                 </div>
-                <Link to="/ListChanges">
-                    <div className="Footer__listChanges">
-                        <h2>Список изминений</h2>
-                        <div className="Footer__listChanges-btn"></div>
-                    </div>
-                </Link>
             </div>
         </div>
     );
