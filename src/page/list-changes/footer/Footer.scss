@@ -41,14 +41,14 @@
                 color: gray;
             }
 
-            .Footer__listChanges-btn{
+            .Footer__listChanges-btn-Changes{
                 width: 25px;
                 height: 2px;
                 background-color: gray;
                 position: relative;
             }
 
-            .Footer__listChanges-btn::after{
+            .Footer__listChanges-btn-Changes::after{
                 content: "";
                 width: 15px;
                 height: 2px;
@@ -59,7 +59,7 @@
                 transform: rotate(-20deg);
             }
 
-            .Footer__listChanges-btn::before{
+            .Footer__listChanges-btn-Changes::before{
                 content: "";
                 width: 15px;
                 height: 2px;

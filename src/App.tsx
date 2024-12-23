@@ -4,6 +4,8 @@ import SnowfallComponents from "./components/snowfall/Snowfall";
 import GarlandComponent from "./components/garland/Garland";
 import ListChanges from "./page/list-changes/ListChanges";
 import TodoList from "./page/todo-list/Todo_list";
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
+
 
 
 
@@ -27,10 +29,15 @@ function App() {
 
     return (
         <div className="App">
-            <GarlandComponent />
-            <SnowfallComponents SnowfallIncluded={SnowfallIncluded}/>
-            <Header swipeTheme={swipeTheme} Theme={Theme} HandlerSnowfallIncluded={HandlerSnowfallIncluded}/>
-            <ListChanges />
+            <BrowserRouter>
+                <GarlandComponent />
+                <SnowfallComponents SnowfallIncluded={SnowfallIncluded}/>
+                <Header swipeTheme={swipeTheme} Theme={Theme} HandlerSnowfallIncluded={HandlerSnowfallIncluded}/>
+                <Routes>
+                    <Route path="/" element={<TodoList />} />
+                    <Route path="/ListChanges" element={<ListChanges />} />
+                </Routes>
+            </BrowserRouter>
         </div>
     );
 }
