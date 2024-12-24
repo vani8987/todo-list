@@ -13,10 +13,11 @@ interface TypeTodo {
     nameTypeTask: string
     emptyBoolea: boolean
     TaskStateReturn: any
+    countTask: number|string
 }
 
-const Todo:React.FC<TypeTodo> = ({HandlerNameTypeTask, nameTypeTask, TaskStateReturn, emptyBoolea, HandlerValueSearch}) => {
-    const [nameTask, setNameTask] = useState("Срочные")
+const Todo:React.FC<TypeTodo> = ({HandlerNameTypeTask, nameTypeTask, TaskStateReturn, emptyBoolea, HandlerValueSearch, countTask}) => {
+    const [nameTask, setNameTask] = useState<string>("Срочные")
 
     useEffect(() => {
         if (nameTypeTask === "urgent") {
@@ -51,8 +52,11 @@ const Todo:React.FC<TypeTodo> = ({HandlerNameTypeTask, nameTypeTask, TaskStateRe
                 </label>
             </div>
         </div>
-        <div className="Tasks">
-            {TaskStateReturn}
+        <div className="Todo__Tasks">
+        <h1>Количество задач: {countTask}</h1>
+            <div className="Tasks">
+                {TaskStateReturn}
+            </div>
         </div>
         {emptyBoolea && <div className="EmtptyTask">
             <EmptyTask />

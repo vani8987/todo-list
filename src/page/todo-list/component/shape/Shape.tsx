@@ -31,7 +31,7 @@ const Shape:React.FC<ShapeType> = ({HandlerTypeTaskState , HandlerTitle, Handler
                     <FaBoxOpen className="iconradioBtn"/>
                 </label>
             </div>
-            <button >отправить</button>
+            <button>отправить</button>
         </form>
     );
 }

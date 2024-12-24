@@ -15,20 +15,25 @@ function TodoList() {
     const [urgent, setUrgent] = useState<TypeShapeTask[]>(JSON.parse(localStorage.getItem('urgent')!) || []) 
     const [not_urgent, setNot_urgent] = useState<TypeShapeTask[]>(JSON.parse(localStorage.getItem('not_urgent')!) || []) 
     const [archive, setArchive] = useState<TypeShapeTask[]>(JSON.parse(localStorage.getItem('archive')!) || [])
+    const [countTask, setCountTask] = useState<number|string>(urgent.length)
     const [TaskStateReturn, setTaskStateReturn] = useState<any[]>([])
     const [data, setData] = useState<TypeShapeTask>({
         title: "", 
-        description: ""
+        description: "",
     })
     const [emptyBoolea, setEmptyBoolea] = useState<boolean>(true)
     const [valueSearch, setValueSearch] = useState<string>("")
+
     
     useEffect(() => {
         if (nameTypeTask === "urgent") {
+            setCountTask(urgent.length === 0 ? "пусто" : urgent.length)
             setEmptyBoolea(urgent.length === 0);
         } else if (nameTypeTask === "not_urgent") {
+            setCountTask(not_urgent.length === 0 ? "пусто" : not_urgent.length)
             setEmptyBoolea(not_urgent.length === 0);
         } else {
+            setCountTask(archive.length === 0 ? "пусто" : archive.length)
             setEmptyBoolea(archive.length === 0);
         }
 
@@ -74,6 +79,7 @@ function TodoList() {
             })
             setTaskStateReturn(TaskMap)
         }
+
     }, [urgent, not_urgent, archive, nameTypeTask, valueSearch])
 
     const HandlerTypeTaskState = (event:React.ChangeEvent<HTMLInputElement>):void => {
@@ -107,7 +113,7 @@ function TodoList() {
         }
         setData({
             title: "", 
-            description: ""
+            description: "",
         })
         event.target.reset();
         setStateType("urgent")
@@ -135,6 +141,7 @@ function TodoList() {
                 TaskStateReturn={TaskStateReturn}
                 emptyBoolea={emptyBoolea}
                 HandlerValueSearch={HandlerValueSearch}
+                countTask={countTask}
                 />
             </div>
             <Footer />
